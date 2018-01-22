@@ -9,7 +9,6 @@ $fields = [
     'author_name' =>            ['Your name',             '',                                                ''],
     'author_github_username' => ['Your Github username',  '<username> in https://github.com/username',       ''],
     'author_email' =>           ['Your email address',    '',                                                ''],
-    'author_twitter' =>         ['Your twitter username', '',                                                '@{author_github_username}'],
     'author_website' =>         ['Your website',          '',                                                'https://github.com/{author_github_username}'],
     'package_vendor' =>         ['Package vendor',        '<vendor> in https://github.com/vendor/package',   '{author_github_username}'],
     'package_name' =>           ['Package name',          '<package> in https://github.com/vendor/package',  ''],
@@ -27,6 +26,7 @@ $replacements = [
     ':vendor'                      => function () use(&$values) { return $values['package_vendor']; },
     ':package_name'                => function () use(&$values) { return $values['package_name']; },
     ':package_description'         => function () use(&$values) { return $values['package_description']; },
+    ':psr4_namespace'                => function () use(&$values) { return str_replace('\\', '\\\\', $values['psr4_namespace']); },
     ':style_ci_id'         => function () use(&$values) { return $values['style_ci_id']; },
     'App\\Skeleton'                => function () use(&$values) { return $values['psr4_namespace']; },
 ];
